@@ -1,0 +1,27 @@
+{
+  "name": "subtitles-next",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "migrate": "knex migrate:latest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@zeit/next-css": "^1.0.1",
+    "antd": "^3.16.3",
+    "babel-plugin-import": "^1.11.0",
+    "knex": "^0.16.5",
+    "next": "^8.1.0",
+    "objection": "^1.6.8",
+    "opensubtitles-api": "^5.0.1",
+    "pg": "^7.10.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
+}

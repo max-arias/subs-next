@@ -1,10 +1,14 @@
-const compression = require('compression')  
-const Knex = require('knex');
-const express = require('express')
-const next = require('next')
+import compression from 'compression';
+import Knex from 'knex';
+import express from 'express';
+import next from 'next';
 
-const knexConfig = require('./knexfile');
-const { Model } = require('objection');
+// Models
+import knexConfig from './knexfile';
+import { Model } from 'objection';
+
+// Controllers
+import autocompleteController from './controllers/autocomplete';
 
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
@@ -17,20 +21,19 @@ const app = next({ dev })
 const handle = app.getRequestHandler()
 
 app.prepare().then(() => {
-  const server = express()
-  server.use(compression()) 
+  const server = express();
+  server.use(compression());
 
-  // server.get('/a', (req, res) => {
-  //   return app.render(req, res, '/a', req.query)
-  // })
+  server.get('/autocomplete/:term', async (req, res) => {
+    const { term } = req.params;
+    const result = await autocompleteController.search(term);
 
-  // server.get('/b', (req, res) => {
-  //   return app.render(req, res, '/b', req.query)
-  // })
+    res.send(result);
+  });
 
-  // server.get('/posts/:id', (req, res) => {
-  //   return app.render(req, res, '/posts', { id: req.params.id })
-  // })
+  server.get('/s/:term', (req, res) => {
+    app.render(req, res, '/subs',  { ...req.query, ...req.params })
+  })
 
   server.get('*', (req, res) => {
     return handle(req, res)

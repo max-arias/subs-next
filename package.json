@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next",
+    "dev": "nodemon start.js",
     "build": "next build",
-    "start": "next start",
+    "start": "NODE_ENV=production node start.js",
     "migrate": "knex migrate:latest"
   },
   "keywords": [],
@@ -14,14 +14,29 @@
   "license": "ISC",
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
+    "@zeit/next-sass": "^1.0.1",
     "antd": "^3.16.3",
     "babel-plugin-import": "^1.11.0",
+    "classnames": "^2.2.6",
+    "compression": "^1.7.4",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "isomorphic-unfetch": "^3.0.0",
     "knex": "^0.16.5",
+    "lodash": "^4.17.11",
     "next": "^8.1.0",
+    "node-sass": "^4.12.0",
     "objection": "^1.6.8",
     "opensubtitles-api": "^5.0.1",
     "pg": "^7.10.0",
     "react": "^16.8.6",
+    "react-autocomplete": "^1.8.1",
     "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/register": "^7.4.4",
+    "nodemon": "^1.19.0"
   }
 }

@@ -1,10 +1,17 @@
-import { findByIMDB } from '../services/themoviedb.js';
+import { findByIMDB } from '../services/themoviedb';
+import { getSubs } from '../services/opensubtitles';
 
-const Subs = ({ shows }) => (
+import OpenSubtitles from '../components/OpenSubtitles';
+import ItemInfo from '../components/ItemInfo';
+
+const Subs = ({ info, subs }) => (
   <>
     <div className='wrapper'>
-      <div>{JSON.stringify(shows)}</div>
-      <div>{JSON.stringify(shows)}</div>
+      <div>
+        <ItemInfo info={info} />
+        <OpenSubtitles subs={subs} />
+      </div>
+      <div>{JSON.stringify(info)}</div>
     </div>
 
     <style jsx>{`
@@ -23,12 +30,23 @@ const Subs = ({ shows }) => (
 )
 
 Subs.getInitialProps = async ({ req }) => {
-  const { term } = req.params
-  const shows = await findByIMDB(term);
+  const { imdb } = req.params
 
-  console.log(`Fetched: ${term}`)
+  let info = {};
+  let subs = [];
 
-  return { shows }
+  try {
+    info = await findByIMDB(imdb);
+    subs = await getSubs(imdb);
+  } catch (e) {
+    console.error(e);
+  }
+
+  console.log('subs', subs);
+
+  console.log(`Fetched: ${imdb}`)
+
+  return { info, subs }
 }
 
 export default Subs;

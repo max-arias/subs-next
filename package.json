@@ -2,7 +2,7 @@
   "name": "subtitles-next",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "start.js",
   "scripts": {
     "dev": "nodemon start.js",
     "build": "next build",
@@ -17,11 +17,13 @@
     "@zeit/next-sass": "^1.0.1",
     "antd": "^3.16.3",
     "babel-plugin-import": "^1.11.0",
+    "cheerio": "^1.0.0-rc.3",
     "classnames": "^2.2.6",
     "compression": "^1.7.4",
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "isomorphic-unfetch": "^3.0.0",
+    "jsonframe-cheerio": "^3.0.1",
     "knex": "^0.16.5",
     "lodash": "^4.17.11",
     "next": "^8.1.0",
@@ -31,12 +33,16 @@
     "pg": "^7.10.0",
     "react": "^16.8.6",
     "react-autocomplete": "^1.8.1",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "request-promise": "^4.2.4"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
     "@babel/register": "^7.4.4",
     "nodemon": "^1.19.0"
+  },
+  "browser": {
+    "opensubtitles-api": false
   }
 }

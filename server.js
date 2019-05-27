@@ -31,7 +31,7 @@ app.prepare().then(() => {
     res.send(result);
   });
 
-  server.get('/s/:term', (req, res) => {
+  server.get('/s/:imdb', (req, res) => {
     app.render(req, res, '/subs',  { ...req.query, ...req.params })
   })
 

@@ -4,12 +4,12 @@ import React, { useState, useEffect } from "react";
 import Autocomplete from 'react-autocomplete';
 import Router from 'next/router';
 import classNames from 'classnames';
+import _ from 'lodash';
 
 import debounce from 'lodash/debounce';
 import throttle from 'lodash/throttle';
 
-import { Avatar, Input, Icon, Typography } from 'antd';
-const { Search } = Input;
+import { Avatar, Icon, Typography } from 'antd';
 const { Text } = Typography;
 
 import './AutocompleteSearch.scss';
@@ -47,8 +47,9 @@ export default () => {
     const result = await res.json();
 
     if (result.result) {
-      setSearchResults(result.result);
-      _autocompleteCache[value] = result.result;
+      const sorted = _.sortBy(result.result, ['Title', 'Year']);
+      setSearchResults(sorted);
+      _autocompleteCache[value] = sorted;
     }
 
     setIsSearching(false);
@@ -62,15 +63,12 @@ export default () => {
   }
 
   const handleSelect = (value, item) => {
-    console.log('value', value);
-    console.log('item', item);
-
     Router.push(`/s/${item.imdbID}`);
   }
 
   useEffect(() => {
     if (searchValue.length > 3) {
-      throttledSearcher(searchValue);
+      debouncedSearcher(searchValue);
     }
   }, [searchValue])
 
@@ -116,16 +114,18 @@ export default () => {
             </span>
           </span>
         )}
-        renderItem={(item, isHighlighted) =>
-          <div className={classNames({ 'highlighted': isHighlighted, 'menu-item': true })} key={item.imdbID}>
-            { item.Poster && item.Poster !== 'N/A' ?
-              <img src={item.Poster} alt={item.Title} width={50}/>
-            :
-              <Avatar icon='warning' shape="square" size={64}/>
-            }
-            <Text className='title'>{item.Title}</Text>
-          </div>
-        }
+        renderItem={(item, isHighlighted) => {
+          return (
+            <div className={classNames({ 'highlighted': isHighlighted, 'menu-item': true })} key={item.imdbID}>
+              { item.Poster && item.Poster !== 'N/A' ?
+                <img src={item.Poster} alt={item.Title} width={32}/>
+              :
+                <Avatar icon='warning' shape="square" size={32}/>
+              }
+              <Text className='title'>{item.Title} ({item.Year})</Text>
+            </div>
+          )
+        }}
         renderMenu={(items, value, style) => {
           return (
             <div className="menu" style={{ ...style, ...menuStyle }}>{buildMenu(items, value)}</div>

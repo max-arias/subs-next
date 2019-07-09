@@ -1,6 +1,6 @@
 'use strict';
 
-const countryCodes =  [
+const languageCodes =  [
   {"code":"ab","name":"Abkhaz","nativeName":"аҧсуа"},
   {"code":"aa","name":"Afar","nativeName":"Afaraf"},
   {"code":"af","name":"Afrikaans","nativeName":"Afrikaans"},
@@ -128,7 +128,7 @@ const countryCodes =  [
   {"code":"fa","name":"Persian; Farsi/Persian; Farsi","nativeName":"فارسی"},
   {"code":"pl","name":"Polish","nativeName":"polski"},
   {"code":"ps","name":"Pashto, Pushto","nativeName":"پښتو"},
-  {"code":"pt","name":"Portuguese; Brazillian Portuguese","nativeName":"Português"},
+  {"code":"pt","name":"Portuguese; Brazillian Portuguese;Portuguese (BR);Brazilian Portuguese","nativeName":"Português"},
   {"code":"qu","name":"Quechua","nativeName":"Runa Simi, Kichwa"},
   {"code":"rm","name":"Romansh","nativeName":"rumantsch grischun"},
   {"code":"rn","name":"Kirundi","nativeName":"kiRundi"},
@@ -186,27 +186,27 @@ const countryCodes =  [
 ];
 
 const getCodeFromName = (name) => {
-  const country = countryCodes.filter((val) => {
+  const country = languageCodes.filter((val) => {
     return val.name.toLowerCase().trim().indexOf(name.toLowerCase().trim()) !== -1;
   });
 
   if (country.length) {
     return country[0].code;
   }
-  console.log(name);
+
+  console.log(`NO COUNTRY CODE FOUND FOR: ${name}`)
 
   return false;
 };
 
 const getNameFromCode = (code) => {
-  const country = countryCodes.filter((val) => {
+  const country = languageCodes.filter((val) => {
     return val.code.toLowerCase().trim().indexOf(code.toLowerCase().trim()) !== -1;
   });
 
   if (country.length) {
     return country[0].name;
   }
-  console.log(code);
 
   return false;
 };

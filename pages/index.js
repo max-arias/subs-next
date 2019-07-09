@@ -1,5 +1,8 @@
 'use strict';
 
+import { Typography } from 'antd';
+const { Text } = Typography;
+
 import AutocompleteSearch from '../components/AutocompleteSearch'
 
 export default () => (
@@ -8,6 +11,7 @@ export default () => (
       <div></div>
       <div className='content'>
         <AutocompleteSearch />
+        <Text>Only Movies for now</Text>
       </div>
       <div></div>
     </div>

@@ -16,29 +16,40 @@ const crawl = async (imdb) => {
   const table = $('.table-responsive')
 
   if (!table.length) {
-    return `${imdb} not found!`
+    return {
+      error: true,
+      message: 'Page format changed or no subs found.',
+      subs: [],
+    }
   }
 
   const frame = {
     subs: {
-      _s: ".table-responsive tbody tr",
+      _s: ".table-responsive table tbody tr",
       _d: [{
-        "language": "td.flag-cell .sub-lang",
-        "name": "td:nth-of-type(3)",
+        "lang": "td.flag-cell .sub-lang",
+        "filename": "td:nth-of-type(3)",
         "download": "td.download-cell a @ href"
       }]
     }
   }
 
-  const result = table.scrape(frame, { string: true })
+  const result = table.scrape(frame)
 
-  console.log(result)
+  if (result && result.subs) {
+    return {
+      error: false,
+      subs: result.subs,
+    }
+  }
 
-
+  return {
+    error: false,
+    message: 'No subs found',
+    subs: [],
+  }
 }
 
-crawl('tt0432348')
-
-// export default {
-//   crawl,
-// }
+module.exports = {
+  crawl,
+}

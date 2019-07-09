@@ -8,7 +8,7 @@ import knexConfig from './knexfile';
 import { Model } from 'objection';
 
 // Controllers
-import autocompleteController from './controllers/autocomplete';
+import subsController from './controllers/subs';
 
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
@@ -26,11 +26,19 @@ app.prepare().then(() => {
 
   server.get('/autocomplete/:term', async (req, res) => {
     const { term } = req.params;
-    const result = await autocompleteController.search(term);
+    const result = await subsController.search(term);
 
     res.send(result);
   });
 
+  server.get('/subtitles/:service/:imdb', async (req, res) => {
+    const { imdb, service } = req.params;
+    const result = await subsController.getByIMDB(imdb, service);
+
+    res.send(result);
+  });
+
+  // NextJS pages
   server.get('/s/:imdb', (req, res) => {
     app.render(req, res, '/subs',  { ...req.query, ...req.params })
   })

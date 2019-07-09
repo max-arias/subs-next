@@ -13,13 +13,27 @@ const search = async (term) => {
 }
 
 const findByIMDB = async (imdbid) => {
-  const res = await fetch(`${BASE_MOVIE_DB_URL}/find/${imdbid}?language=en-US&external_source=imdb_id&api_key=${MOVIE_DB_API_KEY}`);
-  const result = await res.json()
+  const url = `${BASE_MOVIE_DB_URL}/find/${imdbid}?language=en-US&external_source=imdb_id&api_key=${MOVIE_DB_API_KEY}`;
+  console.log('url', url);
 
-  return { result }
+  const res = await fetch(url);
+  const result = await res.json();
+
+  return result;
+}
+
+const getDetailsByMovieId = async (id) => {
+  const url = `${BASE_MOVIE_DB_URL}/movie/${id}?language=en-US&api_key=${MOVIE_DB_API_KEY}`;
+  console.log('url', url);
+
+  const res = await fetch(url);
+  const result = await res.json();
+
+  return result;
 }
 
 module.exports = {
   search,
   findByIMDB,
+  getDetailsByMovieId,
 }

@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { List, Typography, Spin, Icon } from 'antd';
+import { List, Spin, Icon } from 'antd';
 
 import fetch from 'isomorphic-unfetch';
-
-import { getCodeFromName } from '../utils/CountryUtils'
 
 export default ({ service, imdb }) => {
   const [subs, setSubs] = useState([]);
@@ -24,7 +22,7 @@ export default ({ service, imdb }) => {
   }, [service])
 
   return isFetching ? (
-    <Spin indicator={<Icon type="loading" style={{ fontSize: 24 }} spin />} />
+    <div>{service} - <Spin indicator={<Icon type="loading" style={{ fontSize: 24 }} spin />} /></div>
   ) : (
     <List
       size="small"

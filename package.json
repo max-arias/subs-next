@@ -24,7 +24,7 @@
     "express": "^4.16.4",
     "isomorphic-unfetch": "^3.0.0",
     "jsonframe-cheerio": "^3.0.1",
-    "knex": "^0.16.5",
+    "knex": "^0.19.5",
     "lodash": "^4.17.13",
     "next": "^9.0.0",
     "node-sass": "^4.12.0",

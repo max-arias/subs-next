@@ -1,0 +1,44 @@
+version: "3.7"
+
+services:
+  cms:
+    image: strapi/strapi
+    volumes:
+      - ./cms:/usr/local/app/cms
+    ports:
+      - '1337:1337'
+    depends_on:
+      - db
+    restart: always
+    environment:
+      DATABASE_CLIENT: postgres
+      DATABASE_NAME: subtitles
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      DATABASE_USERNAME: sub_user
+      DATABASE_PASSWORD: sub_password
+    links:
+      - db:db
+
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: subtitles
+      POSTGRES_PASSWORD: sub_password
+      POSTGRES_USER: sub_user
+    volumes:
+      - ./data:/data/postgres
+  
+  frontend:
+    image: node
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/usr/local/app/web
+    restart: always
+    working_dir: /usr/local/app/web
+    entrypoint: "/bin/bash"
+    command: "-c \"if [ ! -d \"node_modules\" ]; then npm i; fi; npm run dev\""

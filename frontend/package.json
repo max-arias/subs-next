@@ -9,14 +9,11 @@
   "dependencies": {
     "next": "^9.5.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^1.0.0"
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
-    "file-loader": "^6.0.0",
-    "url-loader": "^4.1.0",
-    "webpack": "^4.44.0"
+    "postcss-preset-env": "^6.7.0",
+    "tailwindcss": "^1.6.0"
   },
   "license": "ISC"
 }

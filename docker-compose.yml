@@ -22,7 +22,7 @@ services:
 
   db:
     image: postgres
-    restart: always
+    restart: unless-stopped
     ports:
       - 5432:5432
     container_name: db
@@ -38,6 +38,7 @@ services:
   
   frontend:
     image: node
+    container_name: frontend
     networks:
       - subtitles-network
     ports:

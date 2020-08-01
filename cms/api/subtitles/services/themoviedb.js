@@ -1,6 +1,6 @@
 'use strict'
 
-import fetch from 'isomorphic-unfetch'
+// import fetch from 'isomorphic-unfetch'
 
 const BASE_MOVIE_DB_URL = 'https://api.themoviedb.org/3';
 const MOVIE_DB_API_KEY  = process.env.MOVIE_DB_KEY;

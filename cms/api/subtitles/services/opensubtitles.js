@@ -1,4 +1,4 @@
-import OpenSubtitles from 'opensubtitles-api';
+const OpenSubtitles = require('opensubtitles-api');
 
 // This is imported only on the server side
 

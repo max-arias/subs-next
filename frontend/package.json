@@ -7,9 +7,11 @@
     "start": "next start"
   },
   "dependencies": {
+    "lodash": "^4.17.19",
     "next": "^9.5.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "swr": "^0.2.3"
   },
   "devDependencies": {
     "postcss-preset-env": "^6.7.0",

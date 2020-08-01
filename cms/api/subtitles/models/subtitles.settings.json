@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "subtitles",
+  "info": {
+    "name": "Subtitles"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "slug": {
+      "type": "uid"
+    },
+    "imdbid": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "movie",
+        "tv"
+      ]
+    }
+  }
+}

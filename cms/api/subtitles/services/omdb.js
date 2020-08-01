@@ -1,14 +1,12 @@
 'use strict'
 
-import fetch from 'isomorphic-unfetch'
+const rp = require('request-promise');
 
 const BASE_OMDB_URL = 'http://www.omdbapi.com';
 const OMDB_API_KEY  = process.env.OMDBAPI_KEY;
 
 const search = async (term) => {
-  //TODO: CURRENTLY ONLY SUPPORTING MOVIES
-  const res = await fetch(`${BASE_OMDB_URL}/?s=${term}&apikey=${OMDB_API_KEY}&type=movie`);
-  const result = await res.json();
+  const result = await rp(`${BASE_OMDB_URL}/?s=${term}&apikey=${OMDB_API_KEY}`).then(r => JSON.parse(r))
 
   return { result: result.Search }
 }

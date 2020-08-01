@@ -1,4 +1,4 @@
-import { crawl } from '../crawlers/yifysubtitles';
+// import { crawl } from '../../../crawlers/yifysubtitles';
 
 //TODO: Get these from the DB, not from crawling directly
 const getSubs = async (imdb) => {

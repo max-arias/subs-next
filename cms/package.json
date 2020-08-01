@@ -1,8 +1,8 @@
 {
-  "name": "app",
+  "name": "subgregator-backend",
   "private": true,
   "version": "0.1.0",
-  "description": "A Strapi application",
+  "description": "The Subgregator backend",
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",
@@ -11,20 +11,23 @@
   },
   "devDependencies": {},
   "dependencies": {
-    "strapi": "3.1.1",
-    "strapi-admin": "3.1.1",
-    "strapi-utils": "3.1.1",
-    "strapi-plugin-content-type-builder": "3.1.1",
-    "strapi-plugin-content-manager": "3.1.1",
-    "strapi-plugin-users-permissions": "3.1.1",
-    "strapi-plugin-email": "3.1.1",
-    "strapi-plugin-upload": "3.1.1",
-    "strapi-connector-bookshelf": "3.1.1",
+    "cheerio": "^1.0.0-rc.3",
     "knex": "^0.21.2",
-    "pg": "latest"
+    "opensubtitles-api": "^5.1.2",
+    "pg": "^8.3.0",
+    "request-promise": "^4.2.6",
+    "strapi": "^3.1.3",
+    "strapi-admin": "^3.1.3",
+    "strapi-connector-bookshelf": "^3.1.3",
+    "strapi-plugin-content-manager": "^3.1.3",
+    "strapi-plugin-content-type-builder": "^3.1.3",
+    "strapi-plugin-email": "^3.1.3",
+    "strapi-plugin-upload": "^3.1.3",
+    "strapi-plugin-users-permissions": "^3.1.3",
+    "strapi-utils": "^3.1.3"
   },
   "author": {
-    "name": "A Strapi developer"
+    "name": "Max Arias"
   },
   "strapi": {
     "uuid": "893e9b07-1d40-4e52-b0d6-c02d456ff7e9"

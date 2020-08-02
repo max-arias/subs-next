@@ -1,0 +1,15 @@
+{
+  "name": "subgregator",
+  "version": "0.0.1",
+  "description": "Page to aggregate subtitles from multiple sources",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/max-arias/subtitles.git"
+  },
+  "author": "Max Arias",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/max-arias/subtitles/issues"
+  },
+  "homepage": "https://github.com/max-arias/subtitles#readme"
+}

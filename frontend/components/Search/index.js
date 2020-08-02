@@ -11,7 +11,7 @@ const Search = () => {
     }
 
     return (
-        <div class="grid grid-cols-1 mt-20">
+        <div className="grid grid-cols-1 mt-20">
             <h1 className="text-3xl md:text-6xl text-center pb-4">Subgregator</h1>
             <SearchBar searchCallback={searchCallback} />
             <SearchResult searchKeyword={searchKeyword}/>

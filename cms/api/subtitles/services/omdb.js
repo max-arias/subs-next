@@ -8,7 +8,11 @@ const OMDB_API_KEY  = process.env.OMDBAPI_KEY;
 const search = async (term) => {
   const result = await rp(`${BASE_OMDB_URL}/?s=${term}&apikey=${OMDB_API_KEY}`).then(r => JSON.parse(r))
 
-  return { result: result.Search }
+  if (result.Response === 'True') {
+    return result.Search
+  } else {
+    return []
+  }
 }
 
 module.exports = {

@@ -35,7 +35,7 @@ services:
       - ./db-data:/var/lib/postgresql/data/
     networks:
       - subtitles-network
-  
+
   frontend:
     image: node
     container_name: frontend

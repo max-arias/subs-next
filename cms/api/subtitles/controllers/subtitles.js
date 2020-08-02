@@ -18,9 +18,7 @@ module.exports = {
       } else {
         entities = await strapi.services.subtitles.find(ctx.query);
       }
-      
-      console.log(ctx)
-  
+
       return entities.map(entity => sanitizeEntity(entity, { model: strapi.models.subtitles }));
   },
 };

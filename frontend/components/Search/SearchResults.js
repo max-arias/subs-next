@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 
 const SearchResults = ({ searchKeyword = '', suggestionData = null }) => {
-    const router = useRouter()
     const [ suggestions, setSuggestions ] = useState(suggestionData)
 
     useEffect(() => {
@@ -11,7 +9,6 @@ const SearchResults = ({ searchKeyword = '', suggestionData = null }) => {
             const result = await fetch(`/api/suggestions/${keyword}`)
             const data = await result.json()
             setSuggestions(data)
-            router.push(`/${searchKeyword}`)
         }
 
         if (searchKeyword) {
@@ -21,10 +18,6 @@ const SearchResults = ({ searchKeyword = '', suggestionData = null }) => {
             setSuggestions(null)
           }
         }
-
-        // if (searchKeyword) {
-        //   router.push(`/${searchKeyword}`)
-        // }
     }, [searchKeyword])
 
     return (

@@ -15,6 +15,7 @@
     "swr": "^0.2.3"
   },
   "devDependencies": {
+    "next-react-svg": "^1.1.2",
     "postcss-preset-env": "^6.7.0",
     "tailwindcss": "^1.6.0"
   },

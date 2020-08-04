@@ -1,9 +1,12 @@
 import React, {useState} from 'react'
+import Link from 'next/link'
 
 import SearchBar from './SearchBar'
 import SearchResult from './SearchResults'
 
-const Search = ({ suggestionData = null }) => {
+import Spinner from '../../assets/svg/spinner.svg';
+
+const Search = ({ suggestionData = null, loading = false }) => {
     const [searchKeyword, setSearchKeyword] = useState(null)
 
     const searchCallback = (keyword) => {
@@ -12,9 +15,16 @@ const Search = ({ suggestionData = null }) => {
 
     return (
         <div className="grid grid-cols-1 mt-20">
-            <h1 className="text-3xl md:text-6xl text-center pb-4">Subgregator</h1>
+            <Link href="/">
+              <h1 className="text-3xl md:text-6xl text-center pb-4 cursor-pointer">Subgregator</h1>
+            </Link>
             <SearchBar searchCallback={searchCallback} />
-            <SearchResult searchKeyword={searchKeyword} suggestionData={suggestionData} />
+            {loading ? (
+              <div className="w-full flex justify-center mt-4">
+                <Spinner className="animate-spin -ml-1 mr-3 h-10 w-10 text-purple-700" />
+              </div>
+            ): <SearchResult searchKeyword={searchKeyword} suggestionData={suggestionData} />}
+
         </div>
     )
 }

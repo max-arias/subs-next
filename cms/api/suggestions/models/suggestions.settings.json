@@ -10,7 +10,9 @@
   },
   "attributes": {
     "keyword": {
-      "type": "string"
+      "type": "string",
+      "unique": true,
+      "required": true
     },
     "data": {
       "type": "json"

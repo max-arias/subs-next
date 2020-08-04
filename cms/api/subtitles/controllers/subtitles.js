@@ -6,10 +6,6 @@
  */
 
 module.exports = {
-  async suggestion(ctx) {
-    const { keywords } = ctx.params;
-    return strapi.services.omdb.search(keywords);
-  },
   async find(ctx) {
     const { imdbId } = ctx.query;
 

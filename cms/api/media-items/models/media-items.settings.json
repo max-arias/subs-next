@@ -26,6 +26,9 @@
         "tv",
         "media"
       ]
+    },
+    "movieDbId": {
+      "type": "biginteger"
     }
   }
 }

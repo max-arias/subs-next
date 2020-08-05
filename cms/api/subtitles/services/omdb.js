@@ -9,7 +9,7 @@ const search = async (term) => {
   const result = await rp(`${BASE_OMDB_URL}/?s=${term}&apikey=${OMDB_API_KEY}`).then(r => JSON.parse(r))
 
   if (result.Response === 'True') {
-    return result.Search
+    return result.Search.filter(item => (item.Type === 'series' || item.Type === 'movie'))
   } else {
     return []
   }

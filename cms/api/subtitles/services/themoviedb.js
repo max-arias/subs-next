@@ -7,7 +7,6 @@ const MOVIE_DB_API_KEY  = process.env.MOVIE_DB_KEY;
 
 const search = async (term) => {
   const url = `${BASE_MOVIE_DB_URL}/search/multi?query=${term}&api_key=${MOVIE_DB_API_KEY}&include_adult=false`;
-  console.log(url)
   const res = await rp(url);
   const result = await res.json()
 

@@ -11,5 +11,14 @@
   "bugs": {
     "url": "https://github.com/max-arias/subtitles/issues"
   },
-  "homepage": "https://github.com/max-arias/subtitles#readme"
+  "homepage": "https://github.com/max-arias/subtitles#readme",
+  "devDependencies": {
+    "husky": "^4.2.5",
+    "pretty-quick": "^2.0.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  }
 }

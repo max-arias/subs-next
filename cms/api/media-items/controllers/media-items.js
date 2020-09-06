@@ -40,14 +40,13 @@ module.exports = {
 
         const dataToInsert = {
           imdbId,
-          title: extraInfo.name,
+          title: extraInfo.original_title,
           data: { ...mediaData, ...extraInfo },
           type: mediaData.type,
           movieDbId: extraInfo.id,
         }
 
         const newMediaItem = await strapi.services['media-items'].create(dataToInsert);
-        console.log('newMediaItem', newMediaItem)
         entities = [newMediaItem];
       }
     }

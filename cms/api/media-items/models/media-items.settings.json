@@ -24,7 +24,7 @@
       "type": "enumeration",
       "enum": [
         "tv",
-        "media"
+        "movie"
       ]
     },
     "movieDbId": {

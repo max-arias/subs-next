@@ -9,23 +9,24 @@
     "timestamps": true
   },
   "attributes": {
-    "slug": {
-      "type": "uid"
-    },
-    "imdbid": {
-      "type": "string"
-    },
-    "title": {
+    "imdbId": {
       "type": "string"
     },
     "language": {
       "type": "string"
     },
-    "type": {
+    "data": {
+      "type": "json"
+    },
+    "provider": {
       "type": "enumeration",
       "enum": [
-        "movie",
-        "tv"
+        "opensubtitles",
+        "yifi",
+        "subdivx",
+        "addic7ed",
+        "thesubdb",
+        "subscene"
       ]
     }
   }

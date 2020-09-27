@@ -1,5 +1,3 @@
-# Subgregator
+# Strapi application
 
-WIP
-
-docker-compose up to bring up the app
+A quick description of your strapi application

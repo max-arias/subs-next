@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "subtitles",
+  "info": {
+    "name": "Subtitles"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "imdbId": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string"
+    },
+    "data": {
+      "type": "json"
+    },
+    "provider": {
+      "type": "enumeration",
+      "enum": [
+        "opensubtitles",
+        "yifi",
+        "subdivx",
+        "addic7ed",
+        "thesubdb",
+        "subscene"
+      ]
+    }
+  }
+}

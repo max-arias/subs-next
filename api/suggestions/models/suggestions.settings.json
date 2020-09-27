@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "suggestions",
+  "info": {
+    "name": "Suggestions"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "keyword": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "data": {
+      "type": "json"
+    }
+  }
+}

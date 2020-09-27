@@ -16,7 +16,7 @@ services:
     networks:
       - subtitles-network
     volumes:
-      - ./cms:/srv/app/
+      - ./:/srv/app/
     ports:
       - 1337:1337
 
@@ -35,20 +35,6 @@ services:
       - ./db-data:/var/lib/postgresql/data/
     networks:
       - subtitles-network
-
-  frontend:
-    image: node
-    container_name: frontend
-    networks:
-      - subtitles-network
-    ports:
-      - 3000:3000
-    volumes:
-      - ./frontend:/srv/app/
-    restart: unless-stopped
-    working_dir: /srv/app/
-    entrypoint: "/bin/bash"
-    command: "-c \"if [ ! -d \"node_modules\" ]; then npm i; fi; npm run dev\""
 
 networks:
   subtitles-network:

@@ -1,25 +1,41 @@
 {
-  "name": "subgregator",
-  "version": "0.0.1",
-  "description": "Page to aggregate subtitles from multiple sources",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/max-arias/subtitles.git"
+  "name": "subgregator-backend",
+  "private": true,
+  "version": "0.1.0",
+  "description": "The Subgregator backend",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
   },
-  "author": "Max Arias",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/max-arias/subtitles/issues"
+  "devDependencies": {},
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "knex": "^0.21.5",
+    "node-fetch": "^2.6.1",
+    "opensubtitles-api": "^5.1.2",
+    "pg": "^8.3.3",
+    "puppeteer": "^5.3.1",
+    "strapi": "^3.1.5",
+    "strapi-admin": "^3.1.5",
+    "strapi-connector-bookshelf": "^3.1.5",
+    "strapi-plugin-content-manager": "^3.1.5",
+    "strapi-plugin-content-type-builder": "^3.1.5",
+    "strapi-plugin-email": "^3.1.5",
+    "strapi-plugin-upload": "^3.1.5",
+    "strapi-plugin-users-permissions": "^3.1.5",
+    "strapi-utils": "^3.1.5"
   },
-  "homepage": "https://github.com/max-arias/subtitles#readme",
-  "devDependencies": {
-    "husky": "^4.2.5",
-    "prettier": "^2.1.1",
-    "pretty-quick": "^2.0.1"
+  "author": {
+    "name": "Max Arias"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
-  }
+  "strapi": {
+    "uuid": "893e9b07-1d40-4e52-b0d6-c02d456ff7e9"
+  },
+  "engines": {
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
 }

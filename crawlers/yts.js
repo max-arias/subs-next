@@ -1,8 +1,7 @@
 const cheerio = require('cheerio')
 const fetch = require('node-fetch')
 const { getCodeFromName } = require('../utils/CountryUtils');
-const BASE_URL = process.env.YTS_URL;
-
+const BASE_URL = strapi.config.get('constants.YTS_URL', '/');
 
 const crawl = async (imdbId) => {
   const body = await fetch(`${BASE_URL}/${imdbId}`).then((res) => res.text());
@@ -12,7 +11,12 @@ const crawl = async (imdbId) => {
 
   // No subs
   if (!table.length) {
-    return [];
+    return [{
+      imdbId,
+      language: 'None',
+      provider: 'yts',
+      data: null,
+    }];
   }
 
   const subs = [];

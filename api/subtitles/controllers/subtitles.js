@@ -28,18 +28,25 @@ module.exports = {
     if (!entities.length && imdbId) {
       let subs = [];
 
-      switch(provider) {
-        case 'opensubtitles':
-          subs = await strapi.services.opensubtitles.getSubs(imdbId);
-          break;
-        case 'yts':
-          subs = await strapi.services.yts.getSubs(imdbId);
-          console.log('yts subs', subs)
-          break;
-      }
+      const subProviderPromises = provider.map((p) => {
+        switch(p) {
+          case 'opensubtitles':
+            return strapi.services.opensubtitles.getSubs(imdbId);
+          case 'yts':
+            return strapi.services.yts.getSubs(imdbId);
+          default:
+            return null
+        }
+      });
+
+      subs = await Promise.all(subProviderPromises)
+      subs = subs.flat();
 
       // Create each sub in the DB
-      const subPromises = subs.map(sub => strapi.services.subtitles.create);
+      const subPromises = subs.map(sub => {
+        return strapi.services.subtitles.create(sub);
+      });
+
       entities = await Promise.all(subPromises);
     }
 
@@ -49,7 +56,13 @@ module.exports = {
     );
 
     // Sort by score if available
-    subtitles.sort((a, b) => b.data.score - a.data.score)
+    subtitles.sort((a, b) => {
+      if (!a.data || !a.data.score || !b.data || !b.data.score) {
+        return -1;
+      }
+
+      return b.data.score - a.data.score
+    });
 
     return subtitles;
   },

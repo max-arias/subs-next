@@ -22,11 +22,7 @@
       "type": "enumeration",
       "enum": [
         "opensubtitles",
-        "yifi",
-        "subdivx",
-        "addic7ed",
-        "thesubdb",
-        "subscene"
+        "yts"
       ]
     }
   }

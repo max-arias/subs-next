@@ -24,6 +24,9 @@
         "opensubtitles",
         "yts"
       ]
+    },
+    "langcode": {
+      "type": "string"
     }
   }
 }

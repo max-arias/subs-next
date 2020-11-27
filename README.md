@@ -1,3 +1,3 @@
-# Strapi application
+# Subgregator Backend
 
-A quick description of your strapi application
+https://trello.com/b/VxK9FMjo/subs

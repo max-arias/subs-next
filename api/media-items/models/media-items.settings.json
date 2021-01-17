@@ -11,7 +11,7 @@
   "attributes": {
     "imdbId": {
       "type": "string",
-      "required": true,
+      "required": false,
       "unique": true
     },
     "title": {
@@ -27,8 +27,14 @@
         "movie"
       ]
     },
-    "movieDbId": {
+    "tvId": {
       "type": "biginteger"
+    },
+    "seasonNum": {
+      "type": "integer"
+    },
+    "episodeNum": {
+      "type": "integer"
     }
   }
 }

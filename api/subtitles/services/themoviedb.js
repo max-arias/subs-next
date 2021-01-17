@@ -27,8 +27,26 @@ const getDetailsById = async (id, type = 'movie', language = 'en-US') => {
   return result;
 };
 
+const getSeasonEpisodes = async (id, seasonNum, language = 'en-US') => {
+  const url = `${BASE_MOVIE_DB_URL}/tv/${id}/season/${seasonNum}?language=${language}&api_key=${MOVIE_DB_API_KEY}`;
+
+  const result = await fetch(url).then(res => res.json());
+
+  return result;
+};
+
+const getTvEpisodeExternalIds = async (tvId, seasonNum, episodeNum) => {
+  const url = `${BASE_MOVIE_DB_URL}/tv/${tvId}/season/${seasonNum}/episode/${episodeNum}/external_ids?api_key=${MOVIE_DB_API_KEY}`;
+
+  const result = await fetch(url).then(res => res.json());
+
+  return result;
+};
+
 module.exports = {
   search,
   findByIMDB,
   getDetailsById,
+  getSeasonEpisodes,
+  getTvEpisodeExternalIds,
 };

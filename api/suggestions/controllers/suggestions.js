@@ -10,7 +10,7 @@ const { sanitizeEntity } = require('strapi-utils');
 module.exports = {
   async find(ctx) {
     try {
-      const { keyword } = ctx.query;
+      const { keyword, tvId, seasonNum, episodeNum } = ctx.query;
 
       let entities;
 

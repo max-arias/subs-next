@@ -27,6 +27,7 @@ const crawl = async imdbId => {
         .replace(/\n|\t|(subtitle)/gim, '')
         .trim();
       const url = $(tr).find('.subtitle-download').attr('href');
+      const score = $(tr).find('.rating-cell').text();
 
       subs.push({
         imdbId,
@@ -37,7 +38,7 @@ const crawl = async imdbId => {
           filename,
           url,
           lang: language,
-          score: 0,
+          score: parseInt(score),
         },
       });
     });

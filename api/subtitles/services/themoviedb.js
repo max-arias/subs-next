@@ -28,7 +28,7 @@ const getDetailsById = async (id, type = 'movie', language = 'en-US') => {
 };
 
 const getSeasonEpisodes = async (id, seasonNum, language = 'en-US') => {
-  const url = `${BASE_MOVIE_DB_URL}/tv/${id}/season/${seasonNum}?language=${language}&api_key=${MOVIE_DB_API_KEY}`;
+  const url = `${BASE_MOVIE_DB_URL}/tv/${id}/season/${seasonNum}?language=${language}&api_key=${MOVIE_DB_API_KEY}&append_to_response=external_ids`;
 
   const result = await fetch(url).then(res => res.json());
 
@@ -36,8 +36,7 @@ const getSeasonEpisodes = async (id, seasonNum, language = 'en-US') => {
 };
 
 const getTvEpisodeExternalIds = async (tvId, seasonNum, episodeNum) => {
-  const url = `${BASE_MOVIE_DB_URL}/tv/${tvId}/season/${seasonNum}/episode/${episodeNum}/external_ids?api_key=${MOVIE_DB_API_KEY}`;
-
+  const url = `${BASE_MOVIE_DB_URL}/tv/${tvId}/season/${seasonNum}/episode/${episodeNum}?api_key=${MOVIE_DB_API_KEY}&append_to_response=external_ids`;
   const result = await fetch(url).then(res => res.json());
 
   return result;

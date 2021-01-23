@@ -15,37 +15,53 @@ module.exports = {
 
     let entities = [];
 
-    if (tvId && seasonNum && imdbId) {
-      entities = await strapi.services['media-items'].find({ tvId, seasonNum });
+    if (!imdbId) {
+      entities = await strapi.services['media-items'].find();
 
-      if (!entities.length) {
-        const tvSeries = await strapi.services['media-items'].find({ imdbId });
+      return entities.map(entity =>
+        sanitizeEntity(entity, { model: strapi.models['media-items'] })
+      );
+    }
 
-        const mediaData = await strapi.services.themoviedb.getSeasonEpisodes(
-          tvId,
-          seasonNum
-        );
+    // Find tv/movie
+    entities = await strapi.services['media-items'].find({ imdbId });
 
-        if (mediaData.episodes.length) {
-          const episodePromises = mediaData.episodes.map(async item => {
+    // Find season
+    if (entities.length && tvId && seasonNum) {
+      // Episodes
+      const mediaData = await strapi.services.themoviedb.getSeasonEpisodes(
+        tvId,
+        seasonNum
+      );
+
+      const episodePromises = mediaData.episodes.map(async item => {
+        return strapi.services.themoviedb
+          .getTvEpisodeExternalIds(tvId, seasonNum, item.episode_number)
+          .then(async data => {
             const dataToInsert = {
-              title: item.name,
-              data: item,
+              title: data.name,
+              data,
               type: 'tv',
-              tvId: tvSeries[0].tvId,
+              tvId: data.id,
               seasonNum,
-              episodeNum: item.episode_number,
+              episodeNum: data.episode_number,
+              imdbId: data.external_ids.imdb_id,
             };
 
-            return await strapi.services['media-items'].create(dataToInsert);
+            const episode = await strapi.services['media-items'].find({
+              imdbId: data.external_ids.imdb_id,
+            });
+
+            if (episode.length) {
+              return Promise.resolve(episode[0]);
+            } else {
+              return strapi.services['media-items'].create(dataToInsert);
+            }
           });
+      });
 
-          entities = await Promise.all(episodePromises);
-        }
-      }
-    } else if (imdbId) {
-      entities = await strapi.services['media-items'].find({ imdbId });
-
+      entities = await Promise.all(episodePromises);
+    } else if (!tvId && !seasonNum) {
       if (!entities.length) {
         // Find media by IMDB ID
         const mediaData = await strapi.services.themoviedb
